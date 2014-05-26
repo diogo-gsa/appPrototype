@@ -1,3 +1,4 @@
+package dataAcquisition;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,9 +44,7 @@ public class DeviceConnectivityService {
     }
 
 
-
     // ---------- Auxiliary methods ----------
-
     private static String httpGETrequest(String endpoint) {
         String url = "http://" + remoteAddress + ":" + remotePort + "/" + endpoint;
         StringBuffer response = new StringBuffer();
