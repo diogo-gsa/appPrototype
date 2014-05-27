@@ -30,7 +30,7 @@ public class EsperEngine {
         
         String eplQueryExpression = 
                     "SELECT id, ts, value "
-                  + "FROM DeviceReadingEvent.win:length_batch(3) " //TODO dataAcquisition.DeviceReadingEvent 
+                  + "FROM dataAcquisition.DeviceReadingEvent.win:length_batch(8) " //TODO dataAcquisition.DeviceReadingEvent, change 8 to 9 
                   + "OUTPUT snapshot every 1 events "
                   + "ORDER BY value desc";
         
@@ -43,7 +43,7 @@ public class EsperEngine {
         
         String eplQueryExpression = 
                     "SELECT min(value) as MIN, max(value) as MAX, avg(value) as AVG "
-                +   "FROM DeviceReadingEvent.win:time(15 min) "
+                +   "FROM dataAcquisition.DeviceReadingEvent.win:time(15 min) "
                 +   "WHERE id = 'LIBRARY' "
                 +   "OUTPUT snapshot every 1 events ";
         
@@ -55,9 +55,9 @@ public class EsperEngine {
     public void initThresholdQuery(){
         
         String eplQueryExpression = 
-                    "SELECT ts, value, 10 as threshold "
-                +   "FROM DeviceReadingEvent.win:length(1) "
-                +   "WHERE value > 10 "
+                    "SELECT ts, value, 5250 as threshold "
+                +   "FROM dataAcquisition.DeviceReadingEvent.win:length(1) "
+                +   "WHERE value > 5250 AND id = 'LIBRARY' "
                 +   "OUTPUT snapshot every 1 events ";
         
         query = engineAdmin.createEPL(eplQueryExpression);

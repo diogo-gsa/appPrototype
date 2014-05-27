@@ -22,11 +22,11 @@ public class DeviceReadingEvent{
         return value;
     }
     
-    public String getID() {
+    public String getId() {
         return id;
     }
 
-    public long getTS() {   
+    public long getTs() {   
         return ts;
     }
     

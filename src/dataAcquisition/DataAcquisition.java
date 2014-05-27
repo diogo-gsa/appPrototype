@@ -24,7 +24,7 @@ public class DataAcquisition {
         deviceAddress.put(DeviceID.ROOM_1_19,         "172.20.70.235");
         deviceAddress.put(DeviceID.UTA_A4,            "172.20.70.237");
         deviceAddress.put(DeviceID.AMPHITHEATER_A4,   "172.20.70.231");
-        deviceAddress.put(DeviceID.AMPHITHEATER_A5,   "172.20.70.233");
+        //deviceAddress.put(DeviceID.AMPHITHEATER_A5,   "172.20.70.233"); //TODO BUG na API nao mostra este sensor
         deviceAddress.put(DeviceID.LABORATORY_1_58,   "172.20.70.236");
         
     }
