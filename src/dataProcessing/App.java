@@ -1,22 +1,33 @@
 package dataProcessing;
 
+import com.espertech.esper.epl.core.EngineImportService;
+
 import dataAcquisition.DataAcquisition;
 import dataAcquisition.DeviceID;
 import dataAcquisition.DeviceReadingEvent;
 
-//import dataAcquisition.DeviceConnectivityService;
 
 
 public class App {
 
     public static void main(String[] args){
-        //DeviceConnectivityService service = new DeviceConnectivityService("sb-dev.tagus.ist.utl.pt", 8182);       
-        DataAcquisition device = new DataAcquisition();
+        DataAcquisition deviceAPI= new DataAcquisition();
         
-        DeviceReadingEvent event =  device.getDatapointRead(DeviceID.LIBRARY);
+        DeviceReadingEvent event =  deviceAPI.getDatapointRead(DeviceID.LIBRARY);
         System.out.println(event.toString());
+
+        //-------------------------------------------------------------
+        EsperEngine engine = new EsperEngine();
+        engine.initSortEnergyStreamsQuery();
+        //engine.initMinMaxAvgEnergyConsumptionQuery();
+        //engine.initThresholdQuery();
         
-    
+        while(true){
+           for(DeviceID device : DeviceID.values()){
+               DeviceReadingEvent newEvent =  deviceAPI.getDatapointRead(device);               
+               engine.push(newEvent);
+           }
+        }
     }  
     
 }

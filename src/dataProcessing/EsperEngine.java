@@ -30,7 +30,7 @@ public class EsperEngine {
         
         String eplQueryExpression = 
                     "SELECT id, ts, value "
-                  + "FROM DeviceReadingEvent.win:length_batch(3) "
+                  + "FROM DeviceReadingEvent.win:length_batch(3) " //TODO dataAcquisition.DeviceReadingEvent 
                   + "OUTPUT snapshot every 1 events "
                   + "ORDER BY value desc";
         
