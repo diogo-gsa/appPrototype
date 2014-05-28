@@ -2,6 +2,10 @@ package dataProcessing;
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
+/*
+ * @author Diogo Anjos (diogo.silva.anjos@tecnico.ulisboa.pt)
+ * 
+ */
 
 public class QueryListener implements UpdateListener {
     
