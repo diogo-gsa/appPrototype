@@ -12,7 +12,7 @@ import dataAcquisition.SmartCampusDataAcquisition;
 
 public class App {
 
-    private static boolean DEBUG_MODE = false;
+    private static boolean DEBUG_MODE = true;
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -27,19 +27,25 @@ public class App {
 
         //-------------------------------------------------------------
         EsperEngine engine = new EsperEngine();
-        //        engine.initSortEnergyStreamsQuery();
-        //        engine.initMinMaxAvgEnergyConsumptionQuery();
-        //        engine.initThresholdQuery();
-
+        engine.installPaperQuery1();
+        
         while (true) {
-            for (DeviceID device : deviceAPI.getAvailableDevices()) {
-                DeviceReadingEvent event = deviceAPI.getDatapointRead(device);
-                engine.push(event);
+            if(DEBUG_MODE == false){
+                for (DeviceID device : deviceAPI.getAvailableDevices()) {
+                    DeviceReadingEvent event = deviceAPI.getDatapointRead(device);
+                    if (event != null) {
+                        engine.push(event);
+                    }
+                }
+                Thread.sleep(10000);
+            }else {
+                DeviceReadingEvent event = deviceAPI.getDatapointRead(null);
+                if (event != null) {
+                    engine.push(event);
+                }
             }
-
-            Thread.sleep(10000);
-
         }
+        
+       
     }
-
 }
